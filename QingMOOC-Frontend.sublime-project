@@ -1,0 +1,27 @@
+{
+  "folders":
+  [
+    {
+      "file_exclude_patterns":
+      [
+        ".gitignore",
+        ".stylelintrc",
+        "LICENSE",
+        "node.config.js",
+        "package-lock.json",
+        "postcss.config.js",
+        "QingMOOC-Frontend.sublime-project",
+        "QingMOOC-Frontend.sublime-workspace",
+        "README.md",
+      ],
+      "folder_exclude_patterns":
+      [
+        "build",
+        "generator",
+        "lib",
+        "node_modules",
+      ],
+      "path": "."
+    }
+  ]
+}

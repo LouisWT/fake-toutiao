@@ -1,0 +1,20 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "block-closing-brace-newline-before": null,
+    "block-no-empty": true,
+    "color-hex-length": null,
+    "color-hex-case": "upper",
+    "comment-empty-line-before": null,
+    "rule-empty-line-before": ["always-multi-line", {
+        "except": ["after-single-line-comment"]
+      }
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "unit-no-unknown": true,
+    "selector-pseudo-class-no-unknown": [true, {
+        "ignorePseudoClasses": ["local", "global"]
+      }
+    ]
+  }
+}

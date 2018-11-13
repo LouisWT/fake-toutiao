@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "root": true,
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": ["error", "only-multiline"],
+    "consistent-return": 0,
+    "func-names": ["error", "never"],
+    "function-paren-newline": ["error", "consistent"],
+    "import/extensions": ["error", { "ignore": ["images/.+\\..+"] }],
+    "import/no-absolute-path": 2,
+    "import/no-duplicates": 2,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-named-as-default": 2,
+    "import/no-named-as-default-member": 2,
+    "import/no-unresolved": ["error", { "ignore": ["styles$", "^containers", "^components", "^reducers", "^images", "^utils"] }],
+    "import/prefer-default-export": 2,
+    "import/unambiguous": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/mouse-events-have-key-events": 0,
+    "jsx-quotes": ["error", "prefer-single"],
+    "linebreak-style": ["error", "unix"],
+    "max-len": ["error", 200, 2],
+    "no-alert": 0,
+    "no-mixed-operators": 0,
+    "no-multi-spaces": 1,
+    "no-param-reassign": 1,
+    "no-plusplus": 0,
+    "no-undef": 2,
+    "no-underscore-dangle": 0,
+    "no-unused-expressions": 0,
+    "prefer-destructuring": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-closing-tag-location": 1,
+    "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
+    "react/no-array-index-key": 1,
+    "react/no-danger": 1,
+    "react/prefer-stateless-function": 1,
+    "react/require-default-props": 0,
+    "semi": ["error", "never"],
+    "spaced-comment": ["error", "always"]
+  }
+}
