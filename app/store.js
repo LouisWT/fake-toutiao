@@ -50,13 +50,6 @@ function configStore(initialState) {
 
   persistStore(store, {
     whitelist: [
-      'chapters',
-      'comments',
-      'documents',
-      'labels',
-      'libraries',
-      'mine',
-      'replies',
       'users',
     ],
   }, () => {

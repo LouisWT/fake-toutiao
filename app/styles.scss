@@ -4,25 +4,6 @@
   padding: 0;
 }
 
-/* 修改加载进度条颜色 */
-body > :global(.pace) > * {
-
-  &:nth-child(1) {
-    background-color: #418643;
-
-    > div {
-      box-shadow: 0 0 10px red, 0 0 5px red;
-    }
-  }
-
-  &:nth-child(2) {
-    top: 22px;
-    right: 26px;
-    border-top-color: #418643;
-    border-left-color: #418643;
-  }
-}
-
 /* 设置页面的最小宽度和最小高度，并将页面高度撑满 */
 html {
   min-width: 1080px;

@@ -14,29 +14,8 @@ const LoadComponent = (loader) => (
   })
 )
 
-const Price = LoadComponent(() => (
-  import(/* webpackChunkName: "Price" */ 'containers/Price')))
-
-const Home = LoadComponent(() => (
-  import(/* webpackChunkName: "Home" */ 'containers/Home')))
-
-const Class = LoadComponent(() => (
-  import(/* webpackChunkName: "Class" */ 'containers/Class')))
-
-const SignUp = LoadComponent(() => (
-  import(/* webpackChunkName: "SignUp" */ 'containers/SignUp')))
-
-const Login = LoadComponent(() => (
-  import(/* webpackChunkName: "Login" */ 'containers/Login')))
-
-const Player = LoadComponent(() => (
-  import(/* webpackChunkName: "Player" */ 'containers/Player')))
-
 const User = LoadComponent(() => (
   import(/* webpackChunkName: "User" */ 'containers/User')))
-
-const Document = LoadComponent(() => (
-  import(/* webpackChunkName: "Document" */ 'containers/Document')))
 
 class Routes extends React.Component {
   static contextTypes = {
@@ -52,7 +31,6 @@ class Routes extends React.Component {
 
   state = {
     error: null,
-    shouldRender: false,
   }
 
   componentWillMount() {
@@ -67,25 +45,9 @@ class Routes extends React.Component {
 
     /* 针对所有通过自定义 http 请求器发出的请求产生的错误做一个拦截，在页面上弹出错误信息提示 */
     http.instance.interceptors.response.use((response) => response, (error) => {
-      const {
-        router: {
-          route: {
-            location,
-          }
-        },
-      } = this.context
+      const { router: { route: { location } } } = this.context
 
-      const {
-        code,
-        config: {
-          method,
-          url,
-        },
-        response: {
-          status: statusCode,
-        } = {},
-        message,
-      } = error
+      const { code, config: { method, url }, response: { status: statusCode } = {}, message } = error
 
       const errorTextNode = [
         <div key='url'>{`请求地址: ${window.location.protocol}//${window.location.host}${url}`}</div>,
@@ -128,85 +90,18 @@ class Routes extends React.Component {
 
       return Promise.reject(error)
     })
-
-    /* 获取当前登录用户的个人信息 */
-    const getUserInformation = () => {
-      axios({
-        url: '/api/v1/accounts',
-        method: 'get',
-        timeout: 10000,
-        ...getDynamicConfig(),
-      })
-        .then((response) => {
-          dispatch({
-            type: 'APP/MINE/GET_USER_INFORMATION',
-            payload: response.data,
-          })
-        })
-        .catch(() => {
-          dispatch({
-            type: 'APP/MINE/GET_USER_INFORMATION',
-            payload: null,
-          })
-
-          const pathname = window.location.pathname
-
-          /* 当获取用户信息失败时，重定向到首页 */
-          /* 这种情况主要是出现在用户打开多个页面时，在其中一个页面退出了应用，然后在其他 */
-          /* 页面就会侦听到该事件，此时如果不在以下这些不登录也可以查看的页面，就直接跳转 */
-          /* 到首页 */
-          if (
-            pathname !== '/' &&
-            !pathname.startsWith('/price') &&
-            !pathname.startsWith('/signup') &&
-            !pathname.startsWith('/login') &&
-            !pathname.startsWith('/class') &&
-            !pathname.startsWith('/player')
-          ) {
-            history.push('/')
-          }
-        })
-        .finally(() => {
-          /* 只有当获取到用户个人信息（即使失败）以后才渲染具体的页面组件 */
-          this.setState({
-            shouldRender: true,
-          })
-        })
-    }
-
-    /* 订阅 store 数据恢复成功事件，向服务器请求当前登录用户的个人信息 */
-    this.subscribeTokens.push(PubSub.subscribe('STORE/REHYDRATION_STORE_SUCCEED', getUserInformation))
-
-    /* 订阅 localStorage 中 token 值发生变化的事件，并重新向服务器请求用户的个人信息 */
-    this.subscribeTokens.push(PubSub.subscribe('FETCH/LOCAL_STORAGE_TOKEN_CHANGE', getUserInformation))
   }
 
   componentWillUnmount() {
-    this.subscribeTokens.forEach((subscribeToken) => {
-      PubSub.unsubscribe(subscribeToken)
-    })
   }
 
   render() {
     const {
       error,
-      shouldRender,
     } = this.state
-
-    /* 只有当获取到用户个人信息（即使失败）以后才渲染具体的页面组件 */
-    if (!shouldRender) {
-      return null
-    }
 
     return (
       <Fragment>
-        <Route path='/' component={Home} exact strict />
-        <Route path='/price' component={Price} exact strict />
-        <Route path='/class' component={Class} exact strict />
-        <Route path='/class/:classId' component={Document} exact strict />
-        <Route path='/player/:docId' component={Player} exact strict />
-        <Route path='/signup' component={SignUp} exact strict />
-        <Route path='/login' component={Login} exact strict />
         <Route path='/user' component={User} exact strict />
         <ErrorTips error={error} />
       </Fragment>
