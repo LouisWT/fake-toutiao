@@ -9,6 +9,10 @@ import { hot } from 'react-hot-loader'
 import Header from './Header'
 import Page0 from './Page0'
 import Page1 from './Page1'
+import Page2 from './Page2'
+import Page3 from './Page3'
+import Page4 from './Page4'
+import Page5 from './Page5'
 
 import styles from './styles'
 import arrow from 'images/arrow.png'
@@ -32,6 +36,8 @@ class Home extends React.PureComponent {
     this.setState({
       height,
     })
+    this.carousel.style.transition = 'transform 0.8s ease 0s';
+    this.carousel.style.transform = `translateY(-${this.state.disIndex * height}px)`;
   }
 
   handleWheel = (e) => {
@@ -97,18 +103,10 @@ class Home extends React.PureComponent {
       <div className={styles.carousel} ref={(ele) => {this.carousel = ele}}>
         <Page0 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page0>
         <Page1 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page1>
-        <div className={classnames(styles.page, styles.page2)} style={{height: height}}>
-          <div className={classnames(styles.standardContent, disIndex == 2 ? '' : styles.out)}></div>
-        </div>
-        <div className={classnames(styles.page, styles.page3)} style={{height: height}}>
-          <div className={classnames(styles.standardContent, disIndex == 3 ? '' : styles.out)}></div>
-        </div>
-        <div className={classnames(styles.page, styles.page4)} style={{height: height}}>
-          <div className={classnames(styles.standardContent, disIndex == 4 ? '' : styles.out)}></div>
-        </div>
-        <div className={classnames(styles.page, styles.page5)} style={{height: height}}>
-          <div className={classnames(styles.standardContent, disIndex == 5 ? '' : styles.out)}></div>
-        </div>
+        <Page2 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page2>
+        <Page3 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page3>
+        <Page4 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page4>
+        <Page5 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page5>
       </div>
     </div>
     )

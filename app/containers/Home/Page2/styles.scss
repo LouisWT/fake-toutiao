@@ -1,0 +1,73 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+
+.page .text, .page .link {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  color: #222;
+}
+
+.page .link a {
+  color: #406599;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.page .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.page .bg1 {
+  left: 236px;
+  top: 215px;
+  height: 502px;
+  width: 867px;
+}
+
+.out * {
+  transform: translateY(40px) !important;
+  opacity: 0 !important;
+}
+
+.page2 .t1 {
+  transition-delay: 0ms;
+  top: 155px;
+}
+
+.page2 .p1 {
+  transition-delay: 300ms;
+  top: 280px;
+}
+
+.page2 .i2 {
+  left: 332px;
+  top: 354px;
+  height: 345px;
+  width: 476px;
+  transition-delay: 715ms;
+}

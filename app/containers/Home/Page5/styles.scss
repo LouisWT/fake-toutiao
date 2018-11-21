@@ -1,0 +1,175 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubicBezier(.165,.84,.44,1);
+}
+
+.page .text, .page .link {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  color: #222;
+}
+
+.page .link a {
+  color: #406599;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.page .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.page .bg1 {
+  left: 236px;
+  top: 215px;
+  height: 502px;
+  width: 867px;
+}
+
+.out * {
+  transform: translateY(40px) !important;
+  opacity: 0 !important;
+}
+
+.logoLeft {
+  height: 47px;
+  width: 47px;
+  position: absolute;
+  left: 40px;
+  top: 14px;
+}
+
+.logoRight {
+  height: 32px;
+  width: 94px;
+  position: absolute;
+  left: 102px;
+  top: 22px;
+}
+
+.page5 .bgBottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 526px;
+}
+
+.page5 .i1, .page5 .i2 {
+  height: 244px;
+  width: 104px;
+  bottom: 478px;
+}
+
+.page5 .i1 {
+  left: -6px;
+}
+
+.page5 .i2 {
+  left: 138px;
+}
+
+.page5 .i3 {
+  height: 346px;
+  width: 1129px;
+  left: -111px;
+  bottom: 268px;
+}
+
+.page5 .i4 {
+  height: 164px;
+  width: 659px;
+  left: 122px;
+  bottom: 131px;
+}
+
+.page5 .t1 {
+  left: 1px;
+  bottom: 500px;
+}
+
+.page5 .p1 {
+  left: 1px;
+  bottom: 451px;
+}
+
+.page5 .l1 {
+  left: 1px;
+  bottom: 383px;
+  width: 200px;
+}
+
+.page5 .btn {
+  height: 40px;
+  width: 136px;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 40px;
+  box-sizing: border-box;
+  border-radius: 26px;
+  text-align: center;
+}
+
+.page5 .register {
+  background-color: #fff;
+  border: 1px solid #f85959;
+  left: 642px;
+  bottom: 383px;
+}
+
+.page5 .login {
+  background-color: #f85959;
+  left: 798px;
+  bottom: 383px;
+}
+
+.page5 .btn a {
+  position: relative;
+  text-decoration: none;
+}
+
+.register a {
+  color: #f85959;
+}
+
+.login a {
+  color: #fff;
+}
+
+.page5 .footer1 {
+  margin-bottom: 19px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.page5 .footer2 {
+  margin-bottom: 37px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

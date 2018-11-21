@@ -1,0 +1,164 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+
+.page .text, .page .link {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  color: #222;
+}
+
+.page .link a {
+  color: #406599;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.page .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.page .bg1 {
+  left: 236px;
+  top: 215px;
+  height: 502px;
+  width: 867px;
+}
+
+.out * {
+  transform: translateY(40px) !important;
+  opacity: 0 !important;
+}
+
+.page3 .t1 {
+  transition-delay: 0ms;
+  top: 180px;
+}
+
+.page3 .p1 {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 30px;
+  top: 238px;
+  transition-delay: 300ms;
+}
+
+.page3 .i1 {
+  left: 97px;
+  top: 390px;
+  height: 303px;
+  transition-delay: 600ms;
+}
+
+.page3 .iStackBottom {
+  top: 448px;
+  left: 377.7px;
+  height: 234.5px;
+  width: 418px;
+  transition-delay: 1000ms;
+}
+
+.page3 .iStack {
+  height: 188px;
+  width: 331px;
+}
+
+.page3 .iStack1 {
+  top: 451px;
+  left: 414px;
+  transition-delay: 900ms;
+}
+
+.page3 .iStack2 {
+  top: 435px;
+  left: 414px;
+  transition-delay: 750ms;
+}
+
+.page3 .iStack3 {
+  top: 420px;
+  left: 414px;
+  transition-delay: 600ms;
+}
+
+.page3 .iStack4 {
+  top: 467px;
+  left: 413px;
+  height: 141px;
+  width: 283px;
+  transition-delay: 450ms;
+}
+
+.iAppends .iAppendBlue {
+  animation: round-1 9s cubic-bezier(1,0,0,1) 0s infinite;
+}
+
+@keyframes round-1 {
+  0% {
+    opacity: .7;
+    transform: translate(0) scale(.75);
+  }
+  33% {
+    opacity: 1;
+    transform: translate(22px, 31px) scale(1);
+    z-index: 2;
+  }
+  66% {
+    opacity: .7;
+    transform: translate(90px, 65px) scale(.75);
+  }
+  100% {
+    opacity: .7;
+    transform: translate(0) scale(.75)
+  }
+}
+
+.iAppends .iAppend1 {
+  left: 623px;
+  top: 292px;
+  height: 83px;
+  width: 53px;
+  animation-delay: 0ms;
+}
+
+.iAppends .iAppend2 {
+  left: 623px;
+  top: 292px;
+  height: 113px;
+  width: 54px;
+  animation-delay: -3s;
+}
+
+.iAppends .iAppend3 {
+  left: 623px;
+  top: 292px;
+  height: 67px;
+  width: 69px;
+  animation-delay: -6s;
+}

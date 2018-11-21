@@ -1,0 +1,226 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubicBezier(.165,.84,.44,1);
+}
+
+.page .text, .page .link {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  color: #222;
+}
+
+.page .link a {
+  color: #406599;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.page .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.page .bg1 {
+  left: 236px;
+  top: 215px;
+  height: 502px;
+  width: 867px;
+}
+
+.out * {
+  transform: translateY(40px) !important;
+  opacity: 0 !important;
+}
+
+.page4 .i1 {
+  height: 580px;
+  width: 1302px;
+  left: -206px;
+  top: 160px;
+}
+
+.page4 .t1 {
+  top: 180px;
+  transition-delay: 0ms;
+}
+
+.page4 .p1 {
+  top: 244px;
+  transition-delay: 300ms;
+}
+
+.page .p2 {
+  display: inline;
+}
+
+.page .p2 a, .page .p3 a, .page .p4 a, .page .p5 a, .page .p6 a, .page .p7 a {
+  font-family: PingFangSC-Regular;
+  color: #406599;
+  letter-spacing: 0;
+  text-decoration: none;
+  position: relative;
+}
+
+.page4 .p2 {
+  line-height: 28.8px;
+  font-size: 26px;
+  left: 264px;
+  top: 433px;
+}
+
+.page4 .p3 {
+  line-height: 24px;
+  font-size: 20px;
+  left: 400px;
+  top: 356px;
+}
+
+.page4 .p4 {
+  line-height: 24px;
+  font-size: 22px;
+  left: 509px;
+  top: 422px;
+}
+
+.page4 .p5 {
+  font-size: 16px;
+  line-height: 19.2px;
+  left: 541px;
+  top: 307px;
+}
+
+.page4 .p6 {
+  font-size: 18px;
+  line-height: 23.04px;
+  left: 644px;
+  top: 382px;
+}
+
+.page4 .p7 {
+  font-size: 14px;
+  line-height: 16.8px;
+  left: 677px;
+  top: 281px;
+}
+
+.page4 .i2Bottom {
+  left: 294px;
+  top: 625px;
+  height: 23px;
+  width: 43px;
+  transition-delay: .32s;
+}
+
+.page4 .i2 {
+  height: 154px;
+  width: 130px;
+  left: 251px;
+  top: 474px;
+  transition-delay: .32s;
+}
+
+.page4 .i3Bottom {
+  left: 418px;
+  top: 490px;
+  height: 23px;
+  width: 43px;
+  transition-delay: .54s;
+}
+
+.page4 .i3 {
+  height: 106px;
+  width: 90px;
+  left: 395px;
+  top: 395px;
+  transition-delay: .54s;
+}
+
+.page4 .i4Bottom {
+  left: 531px;
+  top: 575px;
+  height: 23px;
+  width: 43px;
+  transition-delay: .76s;
+}
+
+.page4 .i4 {
+  height: 123px;
+  width: 104px;
+  left: 501px;
+  top: 459px;
+  transition-delay: .76s;
+}
+
+.page4 .i5Bottom {
+  height: 17px;
+  width: 31px;
+  left: 558px;
+  top: 397px;
+  transition-delay: .98s;
+}
+
+.page4 .i5 {
+  height: 69px;
+  width: 58px;
+  left: 541px;
+  top: 337px;
+  transition-delay: .98s;
+}
+
+.page4 .i6Bottom {
+  height: 17px;
+  width: 31px;
+  left: 661px;
+  top: 491px;
+  transition-delay: 1.2s;
+}
+
+.page4 .i6 {
+  width: 60px;
+  height: 70px;
+  left: 645px;
+  top: 417px;
+  transition-delay: 1.2s;
+}
+
+.page4 .i7Bottom {
+  height: 17px;
+  width: 31px;
+  left: 692px;
+  top: 357px;
+  transition-delay: 1.42s;
+}
+
+.page4 .i7 {
+  height: 57px;
+  width: 47px;
+  left: 681px;
+  top: 308px;
+  transition-delay: 1.42s;
+}
+
+.page4 .backTiming {
+  transition-timing-function: cubic-bezier(.18,.9,.32,1.28);
+}
