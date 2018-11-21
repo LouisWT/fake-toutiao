@@ -1,0 +1,106 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+
+.out * {
+  transform: translateY(40px);
+  opacity: 0;
+}
+
+.page0 .bg, .page0 .bg2 {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.page0 .bg {
+  height: 100%;
+}
+
+.page0 .bg2 {
+  height: 255px;
+}
+
+.page0 .logoleft {
+  height: 47px;
+  width: 47px;
+  position: absolute;
+  left: 40px;
+  top: 14px;
+}
+
+.page0 .logoright {
+  height: 32px;
+  width: 94px;
+  position: absolute;
+  left: 102px;
+  top: 22px;
+}
+
+.page0 .i1 {
+  left: 295px;
+  bottom: 404px;
+  height: 405px;
+  width: 679px;
+}
+
+.page0 .i4 {
+  left: -298px;
+  bottom: 0px;
+  height: 831px;
+  width: 927px;
+}
+
+.page0 .i3 {
+  left: 739px;
+  bottom: 300px;
+  height: 58px;
+  width: 196px;
+  cursor: pointer;
+}
+
+.page0 .i2 {
+  left: 519px;
+  bottom: 300px;
+  height: 58px;
+  width: 196px;
+  cursor: pointer;
+}
+
+.page .arrow {
+  left: 429px;
+  bottom: 36px;
+  height: 30px;
+  width: 32px;
+  animation: guide-arrow 2s 0ms infinite;
+} 
+
+@keyframes guide-arrow {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

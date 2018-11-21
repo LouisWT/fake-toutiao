@@ -1,0 +1,138 @@
+.page {
+  position: relative;
+  overflow: hidden;
+}
+
+.page .standardContent {
+  width: 890px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.page .standardContent * {
+  opacity: 1;
+  transform: translate(0);
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(.165,.84,.44,1);
+}
+
+.page .text, .page .link {
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  color: #222;
+}
+
+.page .link a {
+  color: #406599;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.page .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #222;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+.out * {
+  transform: translateY(40px);
+  opacity: 0;
+}
+
+.page1 .waveContent {
+  height: 666px;
+  width: 666px;
+  left: 255px;
+  top: 139px;
+}
+
+.waveContent .wave {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #979797;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: wv 7s linear infinite;
+}
+
+.waveContent .wave1 {
+  animation-delay: 0s;
+}
+
+.waveContent .wave2 {
+  animation-delay: -2s;
+}
+
+.waveContent .wave3 {
+  animation-delay: -4s;
+}
+
+.waveContent .wave4 {
+  /* 不能设为正值，如果 wave4 的 delay为正值 6s，也就是说 6s 后才开始动画，那它默认就是撑满容器的一个实线圆，直到6s开始动画后才能正常 */
+  /* 设为负数表示立刻开始动画，但是跳过 6 秒进入动画 */
+  animation-delay: -6s;
+}
+
+@keyframes wv {
+  0% {
+    opacity: 0;
+    transform: scale(.5);
+  }
+  30% {
+    opacity: .7;
+    transform: scale(.65);
+  }
+  70% {
+    opacity: .1;
+    transform: scale(.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.page1 .t1 {
+  top: 180px;
+  line-height: 56px;
+  transition-delay: 0ms;
+}
+
+.page1 .p1 {
+  top: 244px;
+  transition-delay: 300ms;
+}
+
+
+.page1 .l1 {
+  transition-delay: 400ms;
+  top: 352px;
+  width: 250px;
+}
+
+.page1 .i1 {
+  left: 335px;
+  top: 322px;
+  width: 514px;
+  height: 319px;
+  transition-delay: 500ms;
+}
+
+.page1 .b1 {
+  left: -13px;
+  top: 394px;
+  width: 150px;
+  height: 76px;
+  cursor: pointer;
+}

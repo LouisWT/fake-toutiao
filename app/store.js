@@ -50,14 +50,6 @@ function configStore(initialState) {
 
   persistStore(store, {
     whitelist: [
-      'chapters',
-      'comments',
-      'documents',
-      'labels',
-      'libraries',
-      'mine',
-      'replies',
-      'users',
     ],
   }, () => {
     /* store 中的数据恢复完毕后发布数据恢复成功事件 */

@@ -24,7 +24,6 @@
     "import/no-extraneous-dependencies": 0,
     "import/no-named-as-default": 2,
     "import/no-named-as-default-member": 2,
-    "import/no-unresolved": ["error", { "ignore": ["styles$", "^containers", "^components", "^reducers", "^images", "^utils"] }],
     "import/prefer-default-export": 2,
     "import/unambiguous": 0,
     "jsx-a11y/anchor-is-valid": 0,

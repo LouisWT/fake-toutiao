@@ -1,0 +1,72 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 76px;
+  background: #fff;
+  box-shadow: 0 1px 10px hsla(0,7%,56%,.08);
+  z-index: 3;
+  box-sizing: border-box;
+  transform: translateY(-80px);
+  transition: transform .3s;
+}
+
+.showHeader {
+  transform: translateY(0);
+}
+
+.header .logoLeft {
+  height: 47px;
+  width: 47px;
+  position: absolute;
+  left: 40px;
+  top: 14px;
+}
+
+.header .logoRight {
+  height: 32px;
+  width: 94px;
+  position: absolute;
+  left: 102px;
+  top: 22px;
+}
+
+.header .btnWrapper {
+  position: absolute;
+  bottom: 18px;
+  right: 40px;
+}
+
+.btnWrapper .btn {
+  display: inline-block;
+  width: 96px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+.btnWrapper .register {
+  background-color: #fff;
+  border: 1px solid #f85959;
+}
+
+.register a {
+  color: #f85959;
+}
+
+.btnWrapper .login {
+  background-color: #f85959;
+}
+
+.login a {
+  color: #fff;
+}

@@ -11,11 +11,6 @@ import { immutableObjectEmpty } from './utils/constants'
 /* 导入全局样式 */
 import './styles'
 
-/* 将当前版本信息添加到全局对象中 */
-window.QINGMOOC_APP_VERSION = (function () {
-  return process.env.APP_VERSION
-}())
-
 /* 将 moment 语言设置为中文 */
 /* eslint-disable */
 moment.locale('zh-cn-mine', {
