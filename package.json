@@ -1,7 +1,7 @@
 {
-  "name": "qingmooc-frontend",
+  "name": "toutiao-frontend",
   "version": "1.14.17",
-  "description": "轻慕课桌面端项目",
+  "description": "仿头条",
   "main": "app/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress && npm run node",
@@ -26,7 +26,6 @@
     "node": "8.11.1",
     "npm": "6.4.1"
   },
-  "author": "Einskang",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "7.2.4",
@@ -106,7 +105,6 @@
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
     "react-transition-group": "1.2.1",
-    "react-transition-group-v2": "git@github.com:Kannnnng/react-transition-group-v2.git",
     "reduce-reducers": "0.2.0",
     "redux": "3.7.2",
     "redux-actions": "2.2.1",
@@ -119,6 +117,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.coding.net:Kannnnng/QingMOOC-Frontend.git"
+    "url": "git@github.com:LouisWT/web_demo.git"
   }
 }

@@ -86,7 +86,7 @@ if (process.env.NODE_ENV === 'production') {
       template: path.resolve(APP_PATH, 'utils/apptemplate.pro.ejs'),
       filename: path.resolve(BUILD_PATH, 'index.pro.ejs'),
       inject: false,
-      title: '轻慕课',
+      title: '伪头条',
       minify: false,
     }),
     /* 打包 moment 本地化语言文件时，仅打包汉语的文件 */
@@ -145,7 +145,7 @@ if (process.env.NODE_ENV === 'production') {
       template: path.resolve(APP_PATH, 'utils/apptemplate.dev.ejs'),
       filename: path.resolve(BUILD_PATH, 'index.dev.ejs'),
       inject: false,
-      title: '轻慕课',
+      title: '伪头条',
       minify: false,
     }),
     /* 打包 moment 本地化语言文件时，仅打包汉语的文件 */
