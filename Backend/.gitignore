@@ -7,3 +7,4 @@ logs/
 .vscode/
 src/config/dev.json
 src/config/pro.json
+package-lock.json
