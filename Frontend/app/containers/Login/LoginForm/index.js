@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { hot } from 'react-hot-loader'
 import styles from './styles'
-import temp from 'images/temp-captcha.gif';
 import {
   Field,
   reduxForm,
@@ -12,8 +11,7 @@ import {
 
 class LoginForm extends React.PureComponent {
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit, captcha } = this.props;
     return (
       <form className={styles.wrapper} onSubmit={handleSubmit}>
         <div className={styles.inputField}>
@@ -31,7 +29,8 @@ class LoginForm extends React.PureComponent {
             type="text"
             placeholder="验证码"
           />
-          <img src={temp} className={styles.captcha} />
+          <div className={styles.captcha} dangerouslySetInnerHTML={{__html: captcha}}>
+          </div>
         </div>
         <div className={classnames(styles.inputField, styles.phoneCode)}>
           <Field

@@ -1,0 +1,20 @@
+{
+  "apps" : [{
+    "name" : "qingmooc",
+    "script" : "pro/index.js",
+    "watch" : false,
+    "instances" : 2,
+    "exec_mode": "cluster",
+    "error_file": "logs/err.log",
+    "out_file": "logs/out.log",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "env": {
+      "NODE_ENV": "pro"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "max_restarts": 1000,
+    "autorestart": true
+  }]
+}

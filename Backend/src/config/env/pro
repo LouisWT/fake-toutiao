@@ -1,0 +1,8 @@
+# Config
+NODE_CONFIG_DIR=./pro/config
+
+# Application
+PORT=3000
+
+# Websocket port
+WS_PORT=3001
