@@ -9,6 +9,9 @@ import http, { getDynamicConfig } from 'utils/fetch'
 const Home = importedComponent(() => (
   import(/* webpackChunkName: "Home" */ 'containers/Home')))
 
+const Login = importedComponent(() => (
+  import(/* webpackChunkName: "Login" */ 'containers/Login')))
+
 class Routes extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -23,6 +26,7 @@ class Routes extends React.Component {
     return (
       <Fragment>
         <Route path='/' component={Home} exact strict />
+        <Route path='/login' component={Login} exact strict />
       </Fragment>
     )
   }

@@ -177,7 +177,7 @@ if (process.env.NODE_ENV === 'production') {
     /* 请求代理 */
     proxy: {
       '/api/': {
-        target: 'https://qingmooc.mamasousuo.com',
+        target: 'https://www.louiswt.top',
         changeOrigin: true,
         secure: true,
         pathRewrite: {
