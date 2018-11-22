@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name" : "qingmooc",
+    "name" : "toutiao",
     "script" : "pro/index.js",
     "watch" : false,
     "instances" : 2,

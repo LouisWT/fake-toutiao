@@ -9,6 +9,8 @@ import slogan from 'images/login-slogan.png'
 
 class Login extends React.PureComponent {
 
+
+  
   handleOnLoginFormSubmit = (value) => {
     console.log(value);
   }
