@@ -10,7 +10,7 @@ export default (router) => {
       width: 102,
       height: 40,
     });
-    const sha = crypto.createHash('sha1');
+    const sha = crypto.createHash('md5');
     sha.update(captcha.text);
     captcha.text = sha.digest('hex');
     ctx.body = captcha;
