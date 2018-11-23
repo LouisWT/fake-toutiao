@@ -1,5 +1,5 @@
 import PubSub from 'pubsub-js'
-import lodash from 'lodash'
+import _ from 'lodash'
 import { fromJS } from 'immutable'
 import { handleAllActions } from 'utils/utils'
 import {
@@ -10,9 +10,9 @@ import {
 const reducer = handleAllActions({
   'APP/LOGIN/GET_CAPTCHA': {
     next(state, action) {
-      const captcha = lodash.get(action, 'payload')
+      const captcha = _.get(action, 'payload')
       if (captcha) {
-        return captcha
+        return fromJS({ captcha: captcha })
       } else {
         return state
       }
@@ -21,6 +21,19 @@ const reducer = handleAllActions({
       return state
     },
   },
+  'APP/LOGIN/POST_MSG_REQ': {
+    next(state, action) {
+      const code = _.get(action, 'payload')
+      if (code) {
+        return fromJS({ verifyCode: code })
+      } else {
+        return state
+      }
+    },
+    throw(state) {
+      return state
+    },
+  }
 }, immutableObjectEmpty)
 
 const defaultReducers = reducer(defaultReducersSymbol)

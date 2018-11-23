@@ -177,8 +177,7 @@ const vendors = [
   /* 全部打包到最后的文件中 */
   // 'lodash-es',
   'material-ui',
-  /* md5 这个库在代码中暂时没用到 */
-  // 'md5',
+  'md5',
   // 'mockjs',
   'moment',
   'normalizr',
@@ -197,7 +196,7 @@ const vendors = [
   'react-imported-component',
   'react-redux',
   // 'react-router-dom',
-  'react-transition-group-v2',
+  // 'react-transition-group-v2',
   'reduce-reducers',
   'redux',
   'redux-actions',

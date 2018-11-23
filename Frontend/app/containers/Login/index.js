@@ -17,12 +17,40 @@ class Login extends React.PureComponent {
     actions: PropTypes.object,
     history: PropTypes.object,
     location: PropTypes.object.isRequired,
-    captchaText: PropTypes.string,
-    captcha: PropTypes.string,
+  }
+
+  captchaTimer = undefined;
+
+  constructor(props) {
+    super(props);
+    this.prevRefCapTim = Date.now()
+    this.msgReqTim = Date.now()
   }
 
   componentWillMount() {
-    this.props.actions.getCaptchaAction();
+    this.props.actions.getCaptchaAction()
+    this.captchaTimer = setInterval(() => {
+      this.prevRefCapTim = Date.now()
+      this.props.actions.getCaptchaAction()
+    }, 60000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.captchaTimer)
+  }
+
+  handleOnCaptchaClick() {
+    const curTime = Date.now()
+    if (curTime - this.prevRefCapTim < 3000) return
+    this.props.actions.getCaptchaAction()
+    this.prevRefCapTim = curTime
+  }
+
+  handleOnMessageClick(phoneNumber) {
+    const curTime = Date.now()
+    if (curTime - this.msgReqTim < 60000) return
+    this.props.actions.postMsgReqAction(phoneNumber)
+    this.msgReqTim = curTime;
   }
 
   handleOnLoginFormSubmit = (value) => {
@@ -30,12 +58,11 @@ class Login extends React.PureComponent {
   }
 
   render() {
-    const { captcha } = this.props;
-
+    const { captcha, captchaText } = this.props;
     return (
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <a href="http://www.toutiao.com" target="__blank" className={styles.logoWrap}>
+          <a href="#" target="__blank" className={styles.logoWrap}>
             <img src={logo}/>
           </a>
           <div className={styles.sloganWrap}>
@@ -43,8 +70,11 @@ class Login extends React.PureComponent {
           </div>
           <div className={styles.signBox}>
             <LoginForm
-              onSubmit={this.handleOnLoginFormSubmit}
               captcha={captcha}
+              captchaText={captchaText}
+              onSubmit={this.handleOnLoginFormSubmit}
+              handleOnCaptchaClick={this.handleOnCaptchaClick.bind(this)}
+              handleOnMessageClick={this.handleOnMessageClick.bind(this)}
             ></LoginForm>
           </div>
         </div>

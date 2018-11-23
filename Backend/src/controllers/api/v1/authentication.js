@@ -1,0 +1,34 @@
+import svgCaptcha from 'svg-captcha';
+import crypto from 'crypto';
+import { isReqRight } from 'app/middlewares/validate';
+import {
+  verifyPhoneNumber,
+} from 'app/modules/message';
+
+export default (router) => {
+  router.get('/captcha', async (ctx, next) => {
+    const captcha = svgCaptcha.create({
+      inverse: false,
+      fontSize: 36,
+      noise: 2,
+      width: 102,
+      height: 40,
+    });
+    const sha = crypto.createHash('md5');
+    sha.update(captcha.text);
+    captcha.text = sha.digest('hex');
+    ctx.body = captcha;
+    ctx.status = 200;
+    await next();
+  });
+
+  router.post('/message', async (ctx, next) => {
+    ctx.checkBody('phone').notEmpty().isMobilePhone('', 'zh-CN');
+    if (!isReqRight(ctx)) return;
+    const { phone } = ctx.request.body;
+    const [status, body] = await verifyPhoneNumber(phone);
+    ctx.status = status;
+    ctx.body = body;
+    await next();
+  });
+};

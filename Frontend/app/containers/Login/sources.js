@@ -9,6 +9,16 @@ async function getCaptcha() {
   }
 }
 
+async function postMsgReq(phone) {
+  try {
+    const response = await http.post('v1/authentication/message', { phone })
+    return response
+  } catch (err) {
+    throw err
+  }
+}
+
 export {
   getCaptcha,
+  postMsgReq
 }

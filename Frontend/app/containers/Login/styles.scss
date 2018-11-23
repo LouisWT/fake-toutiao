@@ -44,3 +44,44 @@
   margin-left: -200px;
   background-color: #fff;
 }
+
+.signBox .errMsg {
+  position: absolute;
+  top: -20px;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  width: 274px;
+  color: #666;
+  padding: 12px;
+  border: 1px solid #f85959;
+  background-color: #fff1f1;
+  z-index: 10;
+  display: none;
+}
+
+.signBox .showErr {
+  display: block;
+}
+
+.errMsg i {
+  font-size: 16px;
+}
+
+.errMsg > i:first-child {
+  color: #f85959;
+}
+
+.errMsg .displayErr {
+  display: inline-block;
+  width: 240px;
+  margin-left: 5px;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+}
+
+.errMsg .errClose {
+  cursor: pointer;
+}
