@@ -64,7 +64,7 @@ const generateToken = () => {
       ctx.status = 401;
     } else {
       const { id, ua } = user;
-      const existToken = await getTokenById(id);
+      const existToken = await getTokenById(id, ua);
       const token = genJWT(user);
       if (!_.isEmpty(existToken)) {
         await updateToken(id, ua, token);
