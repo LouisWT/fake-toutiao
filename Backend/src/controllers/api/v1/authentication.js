@@ -5,6 +5,7 @@ import {
   verifyPhoneNumber,
 } from 'app/modules/message';
 import {
+  auth,
   messageAuth,
   generateToken,
 } from 'app/middlewares/auth/index';
@@ -40,6 +41,7 @@ export default (router) => {
    */
   router.post('/phone', async (ctx, next) => {
     ctx.checkBody('phone').notEmpty().isMobilePhone('', 'zh-CN');
+    ctx.checkBody('password').notEmpty();
     ctx.checkBody('code').notEmpty();
     // UserAgent 可以是 pc mobile
     ctx.checkBody('ua').notEmpty();
@@ -49,6 +51,19 @@ export default (router) => {
     await next();
   },
   messageAuth(),
+  generateToken(),
+  );
+
+  router.post('/login', async (ctx, next) => {
+    ctx.checkBody('phone').notEmpty().isMobilePhone('', 'zh-CN');
+    ctx.checkBody('password').notEmpty();
+    ctx.checkBody('ua').notEmpty();
+    if (!isReqRight(ctx)) {
+      return;
+    }
+    await next();
+  },
+  auth(),
   generateToken(),
   );
 };

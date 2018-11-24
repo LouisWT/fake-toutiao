@@ -3,10 +3,10 @@ import { queryOne } from 'app/lib/mysql';
 
 const TokenCache = mongoose.model('TokenCache');
 
-const insertPhoneUser = (phone) => {
+const insertPhoneUser = (phone, password) => {
   const sql = `
-   INSERT INTO account (phone) VALUES (:phone)`;
-  const param = { phone };
+   INSERT INTO account (phone, password) VALUES (:phone, :password)`;
+  const param = { phone, password };
   return queryOne(sql, param);
 };
 

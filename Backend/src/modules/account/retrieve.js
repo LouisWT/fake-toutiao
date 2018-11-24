@@ -16,7 +16,16 @@ const getTokenById = (accountId, userAgent) => {
   });
 };
 
+const verifyUserPassword = async (filter, filterParam, password) => {
+  const sql = `SELECT id FROM account WHERE ${filter} AND password=:password AND deleted = 0`;
+  return queryOne(sql, {
+    ...filterParam,
+    password,
+  });
+};
+
 export {
   queryUserByPhone,
   getTokenById,
+  verifyUserPassword,
 };

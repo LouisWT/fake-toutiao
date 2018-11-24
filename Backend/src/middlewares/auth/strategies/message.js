@@ -6,8 +6,8 @@ import {
 
 export default new CustomStrategy(async (ctx, done) => {
   try {
-    const { phone, code } = ctx.body;
-    const verifyResult = await verifyPhoneCode(phone, code);
+    const { phone, code, password } = ctx.body;
+    const verifyResult = await verifyPhoneCode(phone, code, password);
     if (!_.isEmpty(verifyResult)) {
       const { id, exist } = verifyResult;
       const account = {

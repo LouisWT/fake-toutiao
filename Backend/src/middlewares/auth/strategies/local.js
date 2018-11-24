@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { Strategy as CustomStrategy } from 'passport-custom';
+import { verifyUserPassword } from 'app/modules/account/retrieve';
 
 export default new CustomStrategy(async (ctx, done) => {
   try {
@@ -8,10 +9,7 @@ export default new CustomStrategy(async (ctx, done) => {
     if (!_.isEmpty(verifyResult)) {
       const account = {
         id: verifyResult.id,
-        complete: verifyResult.complete,
-        wxbind: verifyResult.unionid !== '',
         ua,
-        state: 'local',
       };
       done(null, account);
     } else {

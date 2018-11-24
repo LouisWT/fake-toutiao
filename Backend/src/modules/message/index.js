@@ -74,7 +74,7 @@ const verifyPhoneNumber = async (phone) => {
   return [status, body];
 };
 
-const verifyPhoneCode = async (phone, code) => {
+const verifyPhoneCode = async (phone, code, password) => {
   const existLog = await getPhoneLog({ phone, code });
   if (_.isEmpty(existLog)) return {};
   const [existUser] = await Promise.all([
@@ -87,7 +87,7 @@ const verifyPhoneCode = async (phone, code) => {
       exist: true,
     };
   }
-  await insertPhoneUser(phone);
+  await insertPhoneUser(phone, password);
   const newUser = await queryUserByPhone(phone);
   return {
     id: newUser.id,
