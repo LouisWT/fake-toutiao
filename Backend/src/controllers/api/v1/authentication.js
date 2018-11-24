@@ -41,7 +41,7 @@ export default (router) => {
   router.post('/phone', async (ctx, next) => {
     ctx.checkBody('phone').notEmpty().isMobilePhone('', 'zh-CN');
     ctx.checkBody('code').notEmpty();
-    // UserAgent 可以是 ipad pc mobile
+    // UserAgent 可以是 pc mobile
     ctx.checkBody('ua').notEmpty();
     if (!isReqRight(ctx)) {
       return;

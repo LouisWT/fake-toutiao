@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import querystring from 'querystring';
 import passport from 'koa-passport';
 import unless from 'koa-unless';
 import jwt from 'jsonwebtoken';
@@ -79,7 +78,7 @@ const generateToken = () => {
             httpOnly: false,
             signed: true,
           });
-          ctx.redirect('/profile');
+          // ctx.redirect('/profile');
           break;
         }
         default:
