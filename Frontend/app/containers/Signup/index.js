@@ -7,12 +7,12 @@ import { connect } from 'react-redux'
 import actions from './actions'
 import selector from './selector'
 
-import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 import styles from './styles'
 import logo from 'images/logo.png'
 import slogan from 'images/login-slogan.png'
 
-class Login extends React.PureComponent {
+class Signup extends React.PureComponent {
   static propTypes = {
     actions: PropTypes.object,
     history: PropTypes.object,
@@ -24,7 +24,6 @@ class Login extends React.PureComponent {
   constructor(props) {
     super(props);
     this.prevRefCapTim = Date.now()
-    this.msgReqTim = Date.now()
   }
 
   componentWillMount() {
@@ -47,18 +46,17 @@ class Login extends React.PureComponent {
   }
 
   handleOnMessageClick(phoneNumber) {
-    const curTime = Date.now()
-    if (curTime - this.msgReqTim < 60000) return
     this.props.actions.postMsgReqAction(phoneNumber)
-    this.msgReqTim = curTime;
   }
 
   handleOnLoginFormSubmit = (value) => {
-    console.log(value);
+    const phone = value.get('mobile');
+    const code = value.get('code');
+    this.props.actions.userSignupAction(phone, code);
   }
 
   render() {
-    const { captcha, captchaText } = this.props;
+    const { captcha, captchaText, verifyCode } = this.props;
     return (
       <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -69,13 +67,15 @@ class Login extends React.PureComponent {
             <img src={slogan}/>
           </div>
           <div className={styles.signBox}>
-            <LoginForm
+            <SignupForm
               captcha={captcha}
               captchaText={captchaText}
+              captchaTimer={this.captchaTimer}
+              verifyCode={verifyCode}
               onSubmit={this.handleOnLoginFormSubmit}
               handleOnCaptchaClick={this.handleOnCaptchaClick.bind(this)}
               handleOnMessageClick={this.handleOnMessageClick.bind(this)}
-            ></LoginForm>
+            ></SignupForm>
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
+const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(Signup)
 
 const hotComponent = hot(module)(connectedComponent)
 

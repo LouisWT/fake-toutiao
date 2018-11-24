@@ -30,9 +30,8 @@ class Page0 extends React.PureComponent {
         <div className={classnames(styles.standardContent, disIndex == 0 ? '' : styles.out)}>
           <img src={page0I1} alt="" className={styles.i1} />
           <img src={page0I4} alt="" className={styles.i4} />
-          <img src={login} alt="" className={styles.i3} />
-          <img src={signUp} alt="" className={styles.i2} />
-          {/* <img src={arrow} alt="" className={styles.arrow} onClick={this.handleOnArrowClick} /> */}
+          <img src={login} alt="" className={styles.i3} onClick={this.props.handleLoginClick} />
+          <img src={signUp} alt="" className={styles.i2} onClick={this.props.handleSignupCLick} />
           {content}
         </div>
       </div>

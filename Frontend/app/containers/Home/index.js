@@ -81,6 +81,14 @@ class Home extends React.PureComponent {
     })
   }
 
+  handleLoginClick = () => {
+    this.props.history.push('/login')
+  }
+
+  handleSignupCLick = () => {
+    this.props.history.push('/signup')
+  }
+
   renderArrow = () => (
     <img src={arrow} alt="" className={styles.arrow} onClick={this.handleOnArrowClick}/>
   )
@@ -101,7 +109,7 @@ class Home extends React.PureComponent {
         </ul>
       </div>
       <div className={styles.carousel} ref={(ele) => {this.carousel = ele}}>
-        <Page0 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page0>
+        <Page0 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()} handleLoginClick={this.handleLoginClick} handleSignupCLick={this.handleSignupCLick}></Page0>
         <Page1 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page1>
         <Page2 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page2>
         <Page3 disIndex={this.state.disIndex} height={this.state.height} content={this.renderArrow()}></Page3>

@@ -8,11 +8,11 @@ import {
 } from 'utils/constants'
 
 const reducer = handleAllActions({
-  'APP/LOGIN/GET_CAPTCHA': {
+  'APP/SIGNUP/GET_CAPTCHA': {
     next(state, action) {
       const captcha = _.get(action, 'payload')
       if (captcha) {
-        return fromJS({ captcha: captcha })
+        return state.set('captcha', fromJS(captcha));
       } else {
         return state
       }
@@ -21,14 +21,22 @@ const reducer = handleAllActions({
       return state
     },
   },
-  'APP/LOGIN/POST_MSG_REQ': {
+  'APP/SIGNUP/POST_MSG_REQ': {
     next(state, action) {
       const code = _.get(action, 'payload')
       if (code) {
-        return fromJS({ verifyCode: code })
+        return state.set('code', code);
       } else {
         return state
       }
+    },
+    throw(state) {
+      return state
+    },
+  },
+  'APP/SIGNUP/FORM_SUBMIT': {
+    next(state, action) {
+      return state
     },
     throw(state) {
       return state

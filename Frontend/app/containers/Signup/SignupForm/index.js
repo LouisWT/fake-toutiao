@@ -12,7 +12,21 @@ import {
 
 let captchaVal;
 
-class LoginForm extends React.PureComponent {
+const mobileRequired = (value) => value ? undefined : '请输入手机号'
+const mobileValid = (value) => value && /^1[3|4|5|7|8][0-9]{9}$/.test(value) ? undefined : '请输入正确格式的手机号'
+const captchaRequired = (value) => value ? undefined : '请输入图片验证码'
+const captchaValid = (value, allValues, { captchaText }) => value && md5(value) === captchaText ? undefined : '请输入正确图片验证码'
+const msgValid = (value, allValues, props) => {
+  const { captchaText, verifyCode } = props;
+  const captcha = allValues.get('captcha')
+  if (!captcha) return '请输入图片验证码'
+  if (md5(captcha) !== captchaText) return '请先输入正确图片验证码'
+  if (!value) return '请输入手机验证码'
+  if (md5(value) !== verifyCode) return '请输入正确手机验证码'
+  return undefined
+}
+
+class SignupForm extends React.PureComponent {
   timer = undefined
 
   state = {
@@ -35,9 +49,13 @@ class LoginForm extends React.PureComponent {
     </div>
   )
 
-  handleOnMessageClick = (phone) => {
+  handleMessageClick() {
     if (this.timer !== undefined) return;
-    // this.props.handleOnMessageClick(phone)
+    const phone = this.mobileEle.value;
+    const captcha = this.captchaEle.value; 
+    if (!/^1[3|4|5|7|8][0-9]{9}$/.test(phone) || !captcha || md5(captcha) !== captchaVal) return;
+    clearInterval(this.props.captchaTimer);
+    this.props.handleOnMessageClick(phone)
     this.setState({
       count: 60,
       isWaiting: true,
@@ -59,7 +77,7 @@ class LoginForm extends React.PureComponent {
   }
 
   render() {
-    const { captcha, captchaText, handleSubmit, handleOnCaptchaClick, handleOnMessageClick } = this.props;
+    const { captcha, captchaText, verifyCode, handleSubmit, handleOnCaptchaClick } = this.props;
     const { count, isWaiting } = this.state;
     captchaVal = captchaText;
     return (
@@ -71,6 +89,8 @@ class LoginForm extends React.PureComponent {
             type="text"
             placeholder="手机号"
             autocomplete="off"
+            ref={(ele) => { this.mobileEle = ele } }
+            validate={[mobileRequired, mobileValid]}
           />
         </div>
         <div className={classnames(styles.inputField, styles.verification)}>
@@ -80,6 +100,8 @@ class LoginForm extends React.PureComponent {
             type="text"
             placeholder="验证码"
             autocomplete="off"
+            ref={(ele) => { this.captchaEle = ele } }
+            validate={[captchaRequired, captchaValid]}
           />
           <div
             className={styles.captcha} dangerouslySetInnerHTML={{__html: captcha}}
@@ -94,10 +116,11 @@ class LoginForm extends React.PureComponent {
             type="text"
             placeholder="手机验证码"
             autocomplete="off"
+            validate={[msgValid]}
           />
           <span
             className={classnames(styles.codeBtn, isWaiting ? styles.active : '')}
-            onClick={this.handleOnMessageClick}  
+            onClick={this.handleMessageClick.bind(this)}  
           >
             {!isWaiting ? '获取验证码' : `${count}s重新获取`}
           </span>
@@ -115,30 +138,31 @@ class LoginForm extends React.PureComponent {
   }
 }
 
-LoginForm = reduxForm({
+SignupForm = reduxForm({
   form: 'login',
-  validate: (values) => {
-    const errors = {}
+  // validate: (values) => {
+  //   const errors = {}
 
-    if (!values.get('mobile')) {
-      errors.mobile = '请填写手机号码'
-    } else if (!/^1[3|4|5|7|8][0-9]{9}$/.test(values.get('mobile'))) {
-      errors.mobile = '请填写正确格式的手机号码'
-    }
-    if (!values.get('captcha')) {
-      errors.captcha = '请填写图片验证码'
-    } else if (md5(values.get('captcha')) !== captchaVal) {
-      errors.captcha = '请填写正确的图片验证码'
-    }
+  //   if (!values.get('mobile')) {
+  //     errors.mobile = '请填写手机号码'
+  //   } else if (!/^1[3|4|5|7|8][0-9]{9}$/.test(values.get('mobile'))) {
+  //     errors.mobile = '请填写正确格式的手机号码'
+  //   }
+  //   if (!values.get('captcha')) {
+  //     errors.captcha = '请填写图片验证码'
+  //   } else if (md5(values.get('captcha')) !== captchaVal) {
+  //     errors.captcha = '请填写正确的图片验证码'
+  //   }
+  //   if (!values.get('code')) {
+  //     errors.code = '请填写手机验证码'
+  //   } else if (md5(values.get('code')) !== msgVerify) {
+  //     errors.code = '请填写正确手机验证码'
+  //   }
 
-    if (!values.get('code')) {
-      errors.code = '请填写手机验证码'
-    }
+  //   return errors
+  // },
+})(SignupForm)
 
-    return errors
-  },
-})(LoginForm)
-
-const hotComponent = hot(module)(LoginForm)
+const hotComponent = hot(module)(SignupForm)
 
 export default hotComponent

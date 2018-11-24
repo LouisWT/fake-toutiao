@@ -2,7 +2,7 @@ import http from 'utils/fetch'
 
 async function getCaptcha() {
   try {
-    const response = await http.get('v1/captcha')
+    const response = await http.get('v1/authentication/captcha')
     return response
   } catch (error) {
     throw error
@@ -18,7 +18,17 @@ async function postMsgReq(phone) {
   }
 }
 
+async function userSignUp(phone, code) {
+  try {
+    const response = await http.post('v1/authentication/phone', { phone, code, ua: 'pc' })
+    return response
+  } catch (err) {
+    throw err
+  }
+}
+
 export {
   getCaptcha,
-  postMsgReq
+  postMsgReq,
+  userSignUp,
 }

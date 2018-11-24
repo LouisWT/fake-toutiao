@@ -10,7 +10,7 @@ const selector = createSelector(
     return {
       captchaText: selectorDomain.getIn(['captcha', 'text']),
       captcha: selectorDomain.getIn(['captcha','data']),
-      verifyCode: selectorDomain.get('verifyCode')
+      verifyCode: selectorDomain.get('code')
     }
   }
 )

@@ -18,10 +18,10 @@ class Header extends React.PureComponent {
         <img src={logoRightS} alt="" className={styles.logoRight} />
         <div className={styles.btnWrapper}>
           <div className={classnames(styles.btn, styles.register)}>
-            <a href="#">注册</a>
+            <a href="/signup">注册</a>
           </div>
           <div className={classnames(styles.btn, styles.login)}>
-            <a href="#">登录</a>
+            <a href="/login">登录</a>
           </div>
         </div>
       </div>

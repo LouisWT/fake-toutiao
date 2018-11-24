@@ -35,10 +35,10 @@ class Page5 extends React.PureComponent {
             <a href="#">进一步了解账号注册&gt;</a>
           </div>
           <div className={classnames(styles.btn, styles.register)}>
-            <a href="#">注册</a>
+            <a href="/signup">注册</a>
           </div>
           <div className={classnames(styles.btn, styles.login)}>
-            <a href="#">登录</a>
+            <a href="/login">登录</a>
           </div>
         </div>
         <div className={styles.footer1}></div>
