@@ -76,9 +76,7 @@ const verifyPhoneNumber = async (phone) => {
 
 const verifyPhoneCode = async (phone, code) => {
   const existLog = await getPhoneLog({ phone, code });
-  if (_.isEmpty(existLog)) {
-    return {};
-  }
+  if (_.isEmpty(existLog)) return {};
   const [existUser] = await Promise.all([
     queryUserByPhone(phone),
     deletePhoneLog({ phone, code }),
