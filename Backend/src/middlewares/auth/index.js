@@ -9,6 +9,10 @@ import JwtStrategy from 'app/middlewares/auth/strategies/jwt';
 import LocalStrategy from 'app/middlewares/auth/strategies/local';
 import MessageStrategy from 'app/middlewares/auth/strategies/message';
 
+import { getTokenById } from 'app/modules/account/retrieve';
+import { cacheToken } from 'app/modules/account/create';
+import { updateToken } from 'app/modules/account/update';
+
 passport.use('jwt', JwtStrategy);
 passport.use('local', LocalStrategy);
 passport.use('message', MessageStrategy);
@@ -54,6 +58,38 @@ const verifyJWT = (token) => {
   return jwt.verify(_token, authConfig.jwtSecret);
 };
 
+const generateToken = () => {
+  return async (ctx, next) => {
+    const user = ctx.state.user;
+    if (user === false) {
+      ctx.status = 401;
+    } else {
+      const { id, ua } = user;
+      const existToken = await getTokenById(id);
+      const token = genJWT(user);
+      if (!_.isEmpty(existToken)) {
+        await updateToken(id, ua, token);
+      } else {
+        await cacheToken(id, ua, token);
+      }
+      switch (ua) {
+        case 'pc': {
+          ctx.cookies.set('token', token, {
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: false,
+            signed: true,
+          });
+          ctx.redirect('/profile');
+          break;
+        }
+        default:
+          break;
+      }
+    }
+    await next();
+  };
+};
+
 export {
   initialize,
   authenticate,
@@ -62,4 +98,5 @@ export {
   mobileAuth,
   verifyJWT,
   genJWT,
+  generateToken,
 };

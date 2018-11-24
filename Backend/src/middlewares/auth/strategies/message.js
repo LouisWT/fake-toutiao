@@ -1,20 +1,19 @@
 import _ from 'lodash';
 import { Strategy as CustomStrategy } from 'passport-custom';
+import {
+  verifyPhoneCode,
+} from 'app/modules/message';
 
 export default new CustomStrategy(async (ctx, done) => {
   try {
-    const { phone, code, ua } = ctx.body;
+    const { phone, code } = ctx.body;
     const verifyResult = await verifyPhoneCode(phone, code);
     if (!_.isEmpty(verifyResult)) {
-      const { id, complete, exist } = verifyResult;
-      if (!exist) {
-        await createDefaultSource(id);
-      }
+      const { id, exist } = verifyResult;
       const account = {
         id,
-        ua,
-        complete,
-        state: 'phone',
+        exist,
+        ua: 'pc',
       };
       done(null, account);
     } else {

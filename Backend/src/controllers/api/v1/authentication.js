@@ -4,6 +4,10 @@ import { isReqRight } from 'app/middlewares/validate';
 import {
   verifyPhoneNumber,
 } from 'app/modules/message';
+import {
+  messageAuth,
+  generateToken,
+} from 'app/middlewares/auth/index';
 
 export default (router) => {
   router.get('/captcha', async (ctx, next) => {
@@ -31,4 +35,20 @@ export default (router) => {
     ctx.body = body;
     await next();
   });
+  /**
+   * 用户注册
+   */
+  router.post('/phone', async (ctx, next) => {
+    ctx.checkBody('phone').notEmpty().isMobilePhone('', 'zh-CN');
+    ctx.checkBody('code').notEmpty();
+    // UserAgent 可以是 ipad pc mobile
+    ctx.checkBody('ua').notEmpty();
+    if (!isReqRight(ctx)) {
+      return;
+    }
+    await next();
+  },
+  messageAuth(),
+  generateToken(),
+  );
 };
