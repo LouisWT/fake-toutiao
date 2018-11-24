@@ -79,6 +79,7 @@ const generateToken = () => {
             signed: true,
           });
           // ctx.redirect('/profile');
+          ctx.body = token;
           break;
         }
         default:
