@@ -12,6 +12,9 @@ const Home = importedComponent(() => (
 const Signup = importedComponent(() => (
   import(/* webpackChunkName: "Signup" */ 'containers/Signup')))
 
+const SignupProfile = importedComponent(() => (
+  import(/* webpackChunkName: "SignupProfile" */ 'containers/SignupProfile')))
+
 const Login = importedComponent(() => (
   import(/* webpackChunkName: "Login" */ 'containers/Login')))
 
@@ -30,6 +33,7 @@ class Routes extends React.Component {
       <Fragment>
         <Route path='/' component={Home} exact strict />
         <Route path='/signup' component={Signup} exact strict />
+        <Route path='/signup_profile' component={SignupProfile} exact strict />
         <Route path='/login' component={Login} exact strict />
       </Fragment>
     )

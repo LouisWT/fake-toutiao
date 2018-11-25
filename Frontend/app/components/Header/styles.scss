@@ -4,13 +4,14 @@
   top: 0;
   background-color: #f85959;
   z-index: 100;
-  widows: 100%;
+  width: 100%;
   height: 60px;
 }
 
 .wrapper .content {
   margin: 0 auto;
   width: 78%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -18,11 +19,12 @@
   float: left;
   width: 75px;
   height: 100%;
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiP…AgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+  background-image: url(images/logoright.png);
   background-repeat: no-repeat;
   color: transparent;
   background-size: contain;
   background-position: 50%;
+  cursor: pointer;
 }
 
 .content .right {
@@ -32,13 +34,66 @@
 
 .content .user {
   display: inline-block;
-  height: 100px;
+  height: 100%;
   margin-left: 50px;
-  padding-top: 16px;
-  vertical-align: middle;
+  // position: relative;
 }
 
 .user .information {
+  line-height: 60px;
+  height: 60px;
+  width: 100%;
   box-sizing: content-box;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.information .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.information .userName {
+  max-width: 80px;
+  font-size: 14px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.information i {
+  color: #fff;
+}
+
+.user .dashboard {
+  position: absolute;
+  top: 60px;
+  right: 11%;
+  width: 136px;
+  border: 1px solid #d2d2d2;
+  display: none;
+}
+
+.dashboard ul {
+  list-style-type: none;
+}
+
+.dashboard li {
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+}
+
+.dashboard li i {
+  margin-right: 10px;
+}
+
+.user .showDash {
+  display: block;
 }
