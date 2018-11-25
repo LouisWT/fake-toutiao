@@ -12,6 +12,9 @@ const Home = importedComponent(() => (
 const Signup = importedComponent(() => (
   import(/* webpackChunkName: "Signup" */ 'containers/Signup')))
 
+const Login = importedComponent(() => (
+  import(/* webpackChunkName: "Login" */ 'containers/Login')))
+
 class Routes extends React.Component {
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -27,6 +30,7 @@ class Routes extends React.Component {
       <Fragment>
         <Route path='/' component={Home} exact strict />
         <Route path='/signup' component={Signup} exact strict />
+        <Route path='/login' component={Login} exact strict />
       </Fragment>
     )
   }

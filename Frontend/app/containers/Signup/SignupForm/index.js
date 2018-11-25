@@ -14,6 +14,14 @@ let captchaVal;
 
 const mobileRequired = (value) => value ? undefined : '请输入手机号'
 const mobileValid = (value) => value && /^1[3|4|5|7|8][0-9]{9}$/.test(value) ? undefined : '请输入正确格式的手机号'
+const passwordRequired = (value) => value ? undefined : '请输入密码'
+const passwordValid = (value) => value && /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/.test(value) ? undefined : '密码请使用字母和数字混合形式'
+
+const verifyRequired = (value) => value ? undefined : '请再次确认密码'
+const verifyValid = (value, allValues) => {
+  const password = allValues.get('password');
+  return value === password ? undefined : '密码与上次输入的不同'
+}
 const captchaRequired = (value) => value ? undefined : '请输入图片验证码'
 const captchaValid = (value, allValues, { captchaText }) => value && md5(value) === captchaText ? undefined : '请输入正确图片验证码'
 const msgValid = (value, allValues, props) => {
@@ -91,6 +99,26 @@ class SignupForm extends React.PureComponent {
             autocomplete="off"
             ref={(ele) => { this.mobileEle = ele } }
             validate={[mobileRequired, mobileValid]}
+          />
+        </div>
+        <div className={styles.inputField}>
+          <Field
+            name="password"
+            component={this.renderField}
+            type="password"
+            placeholder="密码"
+            autocomplete="off"
+            validate={[passwordRequired, passwordValid]}
+          />
+        </div>
+        <div className={styles.inputField}>
+          <Field
+            name="verify"
+            component={this.renderField}
+            type="password"
+            placeholder="确认密码"
+            autocomplete="off"
+            validate={[verifyRequired, verifyValid]}
           />
         </div>
         <div className={classnames(styles.inputField, styles.verification)}>

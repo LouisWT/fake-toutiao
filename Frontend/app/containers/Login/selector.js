@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const _selectorDomain = (state) => state.get('Signup')
+const _selectorDomain = (state) => state.get('Login')
 
 const selector = createSelector(
   _selectorDomain,
@@ -10,7 +10,6 @@ const selector = createSelector(
     return {
       captchaText: selectorDomain.getIn(['captcha', 'text']),
       captcha: selectorDomain.getIn(['captcha','data']),
-      verifyCode: selectorDomain.get('code')
     }
   }
 )

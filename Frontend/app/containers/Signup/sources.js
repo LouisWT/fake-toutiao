@@ -1,3 +1,4 @@
+import md5 from 'md5'
 import http from 'utils/fetch'
 
 async function getCaptcha() {
@@ -18,9 +19,10 @@ async function postMsgReq(phone) {
   }
 }
 
-async function userSignUp(phone, code) {
+async function userSignUp(phone, code, password) {
   try {
-    const response = await http.post('v1/authentication/phone', { phone, code, ua: 'pc' })
+    password = md5(md5(`toutiao_${password}`))
+    const response = await http.post('v1/authentication/phone', { phone, code, ua: 'pc', password })
     return response
   } catch (err) {
     throw err

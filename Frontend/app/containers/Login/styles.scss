@@ -1,0 +1,87 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url(images/login-bg.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.content .logoWrap {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.logoWrap img {
+  width: 110px;
+  height: 27px;
+}
+
+.content .sloganWrap {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -275px;
+}
+
+.sloganWrap img {
+  width: 550px;
+  height: 385px;
+}
+
+.content .signBox {
+  position: absolute;
+  width: 300px;
+  top: 230px;
+  left: 50%;
+  padding: 28px 50px 38px;
+  margin-left: -200px;
+  background-color: #fff;
+}
+
+.signBox .errMsg {
+  position: absolute;
+  top: -20px;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  width: 274px;
+  color: #666;
+  padding: 12px;
+  border: 1px solid #f85959;
+  background-color: #fff1f1;
+  z-index: 10;
+  display: none;
+}
+
+.signBox .showErr {
+  display: block;
+}
+
+.errMsg i {
+  font-size: 16px;
+}
+
+.errMsg > i:first-child {
+  color: #f85959;
+}
+
+.errMsg .displayErr {
+  display: inline-block;
+  width: 240px;
+  margin-left: 5px;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+}
+
+.errMsg .errClose {
+  cursor: pointer;
+}

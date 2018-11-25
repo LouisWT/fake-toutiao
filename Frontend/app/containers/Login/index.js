@@ -7,12 +7,12 @@ import { connect } from 'react-redux'
 import actions from './actions'
 import selector from './selector'
 
-import SignupForm from './SignupForm'
+import LoginForm from './LoginForm'
 import styles from './styles'
 import logo from 'images/logo.png'
 import slogan from 'images/login-slogan.png'
 
-class Signup extends React.PureComponent {
+class Login extends React.PureComponent {
   static propTypes = {
     actions: PropTypes.object,
     history: PropTypes.object,
@@ -45,19 +45,16 @@ class Signup extends React.PureComponent {
     this.prevRefCapTim = curTime
   }
 
-  handleOnMessageClick(phoneNumber) {
-    this.props.actions.postMsgReqAction(phoneNumber)
-  }
-
   handleOnLoginFormSubmit = (value) => {
     const phone = value.get('mobile');
-    const code = value.get('code');
-    const password = value.get('password')
-    this.props.actions.userSignupAction(phone, code, password);
+    const password = value.get('password');
+    console.log(phone)
+    console.log(password)
+    this.props.actions.userLoginAction(phone, password);
   }
 
   render() {
-    const { captcha, captchaText, verifyCode } = this.props;
+    const { captcha, captchaText } = this.props;
     return (
       <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -68,15 +65,13 @@ class Signup extends React.PureComponent {
             <img src={slogan}/>
           </div>
           <div className={styles.signBox}>
-            <SignupForm
+            <LoginForm
               captcha={captcha}
               captchaText={captchaText}
               captchaTimer={this.captchaTimer}
-              verifyCode={verifyCode}
               onSubmit={this.handleOnLoginFormSubmit}
               handleOnCaptchaClick={this.handleOnCaptchaClick.bind(this)}
-              handleOnMessageClick={this.handleOnMessageClick.bind(this)}
-            ></SignupForm>
+            ></LoginForm>
           </div>
         </div>
       </div>
@@ -93,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
   return actionMap
 }
 
-const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(Signup)
+const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(Login)
 
 const hotComponent = hot(module)(connectedComponent)
 
