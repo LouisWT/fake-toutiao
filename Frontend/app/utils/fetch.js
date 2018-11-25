@@ -7,10 +7,10 @@ const http = axios.create({
 })
 
 /* 从 cookie 中获取 token */
-const result = document.cookie.match(/qingtoken=(QJWT [\w\.\-]+)/) // eslint-disable-line
+const result = document.cookie.match(/token=(QJWT [\w\.\-]+)/) // eslint-disable-line
 
 /* 销毁 cookie 中的 token */
-document.cookie = `qingtoken=none; expires=${new Date(0)};`
+document.cookie = `token=none; expires=${new Date(0)};`
 
 /* 如果当前 cookie 中存在 token 值，说明用户是通过扫描二维码进入的，此时 cookie 中的 */
 /* token 值是最新的，则将 token 值保存到 localStorage 中；如果 cookie 中没有 */
