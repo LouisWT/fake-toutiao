@@ -24,10 +24,6 @@ class Routes extends React.Component {
     store: PropTypes.object.isRequired,
   }
 
-  constructor(props) {
-    super(props)
-  }
-  
   render() {
     return (
       <Fragment>

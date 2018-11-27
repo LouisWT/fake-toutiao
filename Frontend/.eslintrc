@@ -18,7 +18,7 @@
     "consistent-return": 0,
     "func-names": ["error", "never"],
     "function-paren-newline": ["error", "consistent"],
-    "import/extensions": ["error", { "ignore": ["images/.+\\..+"] }],
+    "import/extensions": 0,
     "import/no-absolute-path": 2,
     "import/no-duplicates": 2,
     "import/no-extraneous-dependencies": 0,
@@ -48,6 +48,12 @@
     "react/prefer-stateless-function": 1,
     "react/require-default-props": 0,
     "semi": ["error", "never"],
-    "spaced-comment": ["error", "always"]
+    "spaced-comment": ["error", "always"],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["./styles", "images\/.+"] 
+      }
+    ]
   }
 }

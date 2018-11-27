@@ -21,8 +21,10 @@ async function postMsgReq(phone) {
 
 async function userSignUp(phone, code, password) {
   try {
-    password = md5(md5(`toutiao_${password}`))
-    const response = await http.post('v1/authentication/phone', { phone, code, ua: 'pc', password })
+    const encodePassword = md5(md5(`toutiao_${password}`))
+    const response = await http.post('v1/authentication/phone', {
+      phone, code, ua: 'pc', password: encodePassword
+    })
     return response
   } catch (err) {
     throw err

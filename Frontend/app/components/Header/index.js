@@ -5,16 +5,16 @@ import { hot } from 'react-hot-loader'
 import styles from './styles'
 
 class Header extends React.PureComponent {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    avatarUrl: PropTypes.string,
+    username: PropTypes.string,
   }
-
-  downTimer = undefined
 
   state = {
     downSelect: false,
-    onTab: false,
   }
+
+  downTimer
 
   handleDownEnter = () => {
     this.setState({
@@ -23,19 +23,19 @@ class Header extends React.PureComponent {
   }
 
   handleDownLeave = () => {
-    if (this.downTimer) return;
+    if (this.downTimer) return
     this.downTimer = window.setTimeout(() => {
       this.setState({
         downSelect: false
       })
-      clearTimeout(this.downTimer);
-      this.downTimer = undefined;
+      clearTimeout(this.downTimer)
+      this.downTimer = undefined
     }, 600)
   }
 
   handleEnterTab = () => {
-    clearTimeout(this.downTimer);
-    this.downTimer = undefined;
+    clearTimeout(this.downTimer)
+    this.downTimer = undefined
   }
 
   handleLeaveTab = () => {
@@ -45,28 +45,28 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { downSelect } = this.state;
+    const { downSelect } = this.state
     return (
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <div className={styles.logo}></div>
+          <div className={styles.logo} alt='' />
           <div className={styles.right}>
             <div className={styles.user}>
               <div className={styles.information}>
-                <img src={this.props.avatarUrl} className={styles.avatar}/>
+                <img src={this.props.avatarUrl} className={styles.avatar} alt='' />
                 <span className={styles.userName}>{this.props.username}</span>
-                <i className="fa fa-caret-down" aria-hidden="true" onMouseEnter={this.handleDownEnter} onMouseLeave={this.handleDownLeave}></i>
+                <i className='fa fa-caret-down' aria-hidden='true' onMouseEnter={this.handleDownEnter} onMouseLeave={this.handleDownLeave} />
               </div>
               <div className={classnames(styles.dashboard, downSelect ? styles.showDash : '')} onMouseEnter={this.handleEnterTab} onMouseLeave={this.handleLeaveTab}>
                 <ul>
-                  <li className="author"><i className="fa fa-cog" aria-hidden="true"></i>账号设置</li>
-                  <li className="author"><i className="fa fa-shield" aria-hidden="true"></i>账号权限</li>
-                  <li className="logout"><i className="fa fa-sign-out" aria-hidden="true"></i>退出登录</li>
+                  <li data-type='setting'><i className='fa fa-cog' aria-hidden='true' />账号设置</li>
+                  <li data-type='auth'><i className='fa fa-shield' aria-hidden='true' />账号权限</li>
+                  <li data-type='logout'><i className='fa fa-sign-out' aria-hidden='true' />退出登录</li>
                 </ul>
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
     )
   }

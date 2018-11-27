@@ -2,3 +2,67 @@
   width: 100%;
   height: 100%;
 }
+
+.content {
+  margin: 80px auto;
+  width: 52%;
+  height: 100%;
+  // 水平阴影位置 垂直阴影位置 模糊距离 阴影尺寸 阴影颜色
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.typeBlock {
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.typeBlock .typeNameBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.typeNameBlock .typeIcon {
+  display: block;
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.typeNameBlock .typeName {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.typeBlock .typeDesc {
+  line-height: 1.75;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+  color: #666a79;
+  width: 100%;
+  height: 130px;
+}
+
+.typeBlock .chsTypeBtn {
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  font-size: 1rem;
+  color: #ed4040;
+  background-color: transparent;
+  border: 1px solid #ed4040;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.typeBlock .chsTypeBtn:hover {
+  color: #fff;
+  background-color: #ed4040;
+}

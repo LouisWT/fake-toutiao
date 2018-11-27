@@ -12,8 +12,8 @@ async function getCaptcha() {
 
 async function userLogin(phone, password) {
   try {
-    password = md5(md5(`toutiao_${password}`))
-    const response = await http.post('v1/authentication/login', { phone, password, ua: 'pc' })
+    const encodePassword = md5(md5(`toutiao_${password}`))
+    const response = await http.post('v1/authentication/login', { phone, password: encodePassword, ua: 'pc' })
     return response
   } catch (err) {
     throw err

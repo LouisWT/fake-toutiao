@@ -1,0 +1,102 @@
+.dialog {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.dialog .panel {
+  width: 650px;
+  height: 565px;
+  margin: 100px auto 0;
+  background: #f4f5f6;
+  opacity: 1;
+  display: block;
+  border-radius: 10px;
+}
+
+.panel .title {
+  box-sizing: border-box;
+  height: 55px;
+  line-height: 55px;
+  width: 100%;
+  padding-left: 15px;
+  font-size: 16px;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.panel .content {
+  padding: 20px;
+  height: 427px;
+  width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.panel .cropWrap {
+  width: 400px;
+  height: 380px;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.cropWrap img {
+  max-width: 400px;
+  max-height: 380px;
+}
+
+.panel .photoCropPreview {
+  box-sizing: border-box;
+  width: 172px;
+  height: 172px;
+  margin-left: 20px;
+  float: right;
+}
+
+.panel .footer {
+  box-sizing: border-box;
+  height: 83px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.footer .btns {
+  height: 43px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.btns .btn {
+  display: inline-block;
+  width: 125px;
+  height: 43px;
+  line-height: 43px;
+  text-align: center;
+  margin: 0 12.5px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btns .confirm {
+  background-color: #ed4040;
+  color: #fff;
+}
+
+.btns .cancel {
+  background-color: #f1f1f1;;
+  color: #a4a4a4;;
+}

@@ -6,13 +6,11 @@ const selector = createSelector(
   _selectorDomain,
   (
     selectorDomain,
-  ) => {
-    return {
-      captchaText: selectorDomain.getIn(['captcha', 'text']),
-      captcha: selectorDomain.getIn(['captcha','data']),
-      verifyCode: selectorDomain.get('code')
-    }
-  }
+  ) => ({
+    captchaText: selectorDomain.getIn(['captcha', 'text']),
+    captcha: selectorDomain.getIn(['captcha', 'data']),
+    verifyCode: selectorDomain.get('code')
+  })
 )
 
 export default selector
