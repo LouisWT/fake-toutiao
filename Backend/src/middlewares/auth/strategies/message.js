@@ -9,11 +9,12 @@ export default new CustomStrategy(async (ctx, done) => {
     const { phone, code, password } = ctx.body;
     const verifyResult = await verifyPhoneCode(phone, code, password);
     if (!_.isEmpty(verifyResult)) {
-      const { id, exist } = verifyResult;
+      const { id, exist, type } = verifyResult;
       const account = {
         id,
         exist,
         ua: 'pc',
+        type,
       };
       done(null, account);
     } else {
