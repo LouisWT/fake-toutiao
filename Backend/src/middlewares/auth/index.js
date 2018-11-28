@@ -88,6 +88,7 @@ const generateToken = () => {
           } else {
             ctx.redirect('/homepage');
           }
+          ctx.status = 302;
           ctx.body = token;
           break;
         }
