@@ -10,6 +10,7 @@ export default new CustomStrategy(async (ctx, done) => {
       const account = {
         id: verifyResult.id,
         ua,
+        type: verifyResult.type,
       };
       done(null, account);
     } else {

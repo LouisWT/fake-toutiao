@@ -1,11 +1,11 @@
 import _ from 'lodash';
-
 import {
   Strategy as JwtStrategy,
   ExtractJwt,
 } from 'passport-jwt';
-
 import { authConfig } from 'config';
+
+import { getTokenById } from 'app/modules/account/retrieve';
 
 const jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('QJWT');
 

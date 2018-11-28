@@ -84,6 +84,7 @@ const verifyPhoneCode = async (phone, code, password) => {
   if (!_.isEmpty(existUser)) {
     return {
       id: existUser.id,
+      type: existUser.type,
       exist: true,
     };
   }
@@ -91,6 +92,7 @@ const verifyPhoneCode = async (phone, code, password) => {
   const newUser = await queryUserByPhone(phone);
   return {
     id: newUser.id,
+    type: newUser.type,
     exist: false,
   };
 };

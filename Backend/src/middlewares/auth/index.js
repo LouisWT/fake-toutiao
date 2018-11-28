@@ -63,7 +63,7 @@ const generateToken = () => {
     if (user === false) {
       ctx.status = 401;
     } else {
-      const { id, ua } = user;
+      const { id, ua, type } = user;
       const existToken = await getTokenById(id, ua);
       const token = genJWT(user);
       if (!_.isEmpty(existToken)) {
@@ -78,7 +78,11 @@ const generateToken = () => {
             httpOnly: false,
             signed: true,
           });
-          // ctx.redirect('/profile');
+          if (type === 0) {
+            ctx.redirect('/signup_profile');
+          } else {
+            ctx.redirect('/homepage');
+          }
           ctx.body = token;
           break;
         }
