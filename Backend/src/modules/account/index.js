@@ -20,9 +20,16 @@ const getDupName = async (name) => {
 const completeUserInfo = async (accountId, param, avatar) => {
   const updater = [];
   const updateParam = {};
-  const { username, introduction } = param;
+  const { type, username, introduction } = param;
   const filter = 'id=:accountId';
   const filterParam = { accountId };
+  if (type) {
+    updater.push('type=:type');
+    let typeIndex = 0;
+    if (type === 'personal') typeIndex = 1;
+    else if (type === 'enterprise') typeIndex = 2;
+    updateParam.type = typeIndex;
+  }
   if (username) {
     updater.push('name=:name'); updateParam.name = username;
   }

@@ -78,6 +78,11 @@ const generateToken = () => {
             httpOnly: false,
             signed: true,
           });
+          ctx.cookies.set('username', id, {
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: false,
+            signed: true,
+          });
           if (type === 0) {
             ctx.redirect('/signup_profile');
           } else {
