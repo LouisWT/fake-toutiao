@@ -20,6 +20,7 @@
 
 .wrapper .avatarField {
   height: auto;
+  margin-top: 30px;
 }
 
 .fieldName {
@@ -62,8 +63,10 @@
 }
 
 .textDesc {
+  display: inline-block;
   color: #666;
   padding-left: 1rem;
+  margin-top: 6px;
 }
 
 .introField > div {
@@ -187,4 +190,15 @@
 .panel .photoCropPreview {
   width: 172px;
   height: 172px;
+}
+
+.errMsg {
+  display: inline-block;
+  margin: 6px 0 6px 9px;
+  color: #f85959;
+}
+
+.errMsg i {
+  font-size: 16px;
+  color: #f85959;
 }

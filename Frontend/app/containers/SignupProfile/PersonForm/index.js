@@ -1,19 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import ReactCrop from 'react-image-crop'
 import { hot } from 'react-hot-loader'
 import { fromJS } from 'immutable'
 import {
   Field,
   reduxForm,
 } from 'redux-form/immutable'
+import http from 'utils/fetch'
 import emptyImg from 'images/empty-img.png'
-import styles from './styles'
-import "react-image-crop/dist/ReactCrop.css";
 import ImageCropper from 'components/ImageCropper'
-
-let defaultUsername
+import styles from './styles'
 
 class PersonForm extends React.PureComponent {
   static propTypes = {
@@ -22,7 +19,6 @@ class PersonForm extends React.PureComponent {
 
   constructor(props) {
     super(props)
-    defaultUsername = this.props.username
     this.state = {
       avatarSrc: '',
       croppedTempUrl: '',
@@ -67,8 +63,7 @@ class PersonForm extends React.PureComponent {
         {...input}
         type={type}
         placeholder={placeholder}
-        className={classnames(styles.textInput, error ? styles.textInputErr : '')}
-        inital={initial}
+        className={classnames(styles.textInput, touched && error ? styles.textInputErr : '')}
       />
       <span className={styles.textDesc}>2~10位字母或数字</span>
       {touched &&
@@ -87,10 +82,15 @@ class PersonForm extends React.PureComponent {
   }) => (
       <div>
         <textarea
-          className={classnames(styles.introInput, error ? styles.textInputErr : '')}
+          className={classnames(styles.introInput, touched && error ? styles.textInputErr : '')}
           {...input}
         ></textarea>
         <span className={styles.textDesc}>10-30个字，要求内容完整通顺</span>
+        {touched &&
+        (error &&
+          <span className={styles.errMsg}>     <i className='fa fa-exclamation-circle' aria-hidden='true' />
+            {error}
+          </span>)}
       </div>
   )
 
@@ -118,12 +118,12 @@ class PersonForm extends React.PureComponent {
               onChange={this.handleOnSelectFile} 
             />
           </a>
-          <span className={styles.avatarDesc}>要求清晰、健康、代表品牌形象<br/>请勿使用二维码，最大5M，200x200像素</span>
           {touched &&
           (error &&
             <span className={styles.errMsg}>     <i className='fa fa-exclamation-circle' aria-hidden='true' />
               {error}
             </span>)}
+          <span className={styles.avatarDesc}>要求清晰、健康、代表品牌形象<br/>请勿使用二维码，最大5M，200x200像素</span>
         </div>
         {avatarSrc && (
           <ImageCropper
@@ -143,7 +143,7 @@ class PersonForm extends React.PureComponent {
   )}
 
   render() {
-    const { handleSubmit, username } = this.props
+    const { handleSubmit, previousPage, username } = this.props
     const { avatarSrc, croppedTempUrl } = this.state
     return (
       <form className={styles.wrapper} onSubmit={handleSubmit}>
@@ -155,7 +155,6 @@ class PersonForm extends React.PureComponent {
             type='text'
             autocomplete='off'
             placeholder={username}
-            validate={[]} 
           />
         </div>
         <div className={styles.introField}>
@@ -163,7 +162,6 @@ class PersonForm extends React.PureComponent {
           <Field
             name='introduction'
             component={this.renderIntroField}
-            validate={[]}
           />
         </div>
         <div className={styles.avatarField}>
@@ -172,7 +170,6 @@ class PersonForm extends React.PureComponent {
             name='avatar'
             component={this.renderAvatarField}
             type='file'
-            validate={[]}
             avatarSrc={avatarSrc}
             previewUrl={croppedTempUrl}
           />
@@ -181,6 +178,7 @@ class PersonForm extends React.PureComponent {
           <input
             type='button'
             className={classnames(styles.actionBtn, styles.prevBtn)}
+            onClick={previousPage}
             value='上一步'
           />
           <input
@@ -194,11 +192,44 @@ class PersonForm extends React.PureComponent {
   }
 }
 
-const PersonReduxForm = reduxForm({
-  form: 'personSignup',
-  initialValues: {
-    username: defaultUsername
+const asyncValidate = async (values) => {
+  const res = await http.get('v1/accounts/name', {
+    params: {
+      username: values.get('username'),
+    }
+  })
+  if (res === 'exist') {
+    return {username: '用户名已经存在'}
   }
+  return {}
+}
+
+const PersonReduxForm = reduxForm({
+  form: 'account',
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+  validate: (values) => {
+    const errors = {}
+    const username = values.get('username')
+    if (!username) {
+      errors.username = '请输入2~10位用户名，可以包括汉字、数字、英文'
+    } else if (!/^[\u4E00-\u9FA5\uF900-\uFA2D0-9a-zA-Z]{2,10}$/.test(username)) {
+      errors.username = '请输入2~10位用户名，可以包括汉字、数字、英文'
+    }
+
+    const introduction = values.get('introduction')
+    if (introduction && /^[.?!,/\\;:"'()<>\[\]\u3002\uff1f\uff01\uff0c\u3001\uff1b\uff1a\u201c\u201d\u2018\u2019\uff08\uff09\u300a\u300b\u3008\u3009\u3010\u3011\u300e\u300f\u300c\u300d\ufe43\ufe44\u3014\u3015\u2026\u2014\uff5e\ufe4f\uffe5\u4E00-\u9FA5\uF900-\uFA2D0-9a-zA-Z]{10,30}$/.test(introduction)) {
+      errors.introduction = '请输入10~30个字符，可以包括数字、汉字、英文、汉字英文字符'
+    }
+
+    const avatar = values.get('avatar')
+    if (!avatar) {
+      errors.avatar = '请添加头像'
+    }
+    return errors
+  },
+  // asyncValidate,
+  // asyncChangeFields: ['username']
 })(PersonForm)
 
 const hotComponent = hot(module)(PersonReduxForm)

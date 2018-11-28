@@ -1,0 +1,11 @@
+.content {
+  margin: 80px auto;
+  width: 52%;
+  height: 100%;
+  // 水平阴影位置 垂直阴影位置 模糊距离 阴影尺寸 阴影颜色
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.12);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
