@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import logo from 'images/logo.png'
 import slogan from 'images/login-slogan.png'
+import http from 'utils/fetch'
+import md5 from 'md5'
 import SignupForm from './SignupForm'
 import actions from './actions'
 import selector from './selector'
@@ -16,6 +18,7 @@ class Signup extends React.PureComponent {
     captcha: PropTypes.string,
     captchaText: PropTypes.string,
     verifyCode: PropTypes.string,
+    history: PropTypes.object,
   }
 
   constructor(props) {
@@ -46,11 +49,21 @@ class Signup extends React.PureComponent {
     this.props.actions.postMsgReqAction(phoneNumber)
   }
 
-  handleOnLoginFormSubmit = (value) => {
+  handleOnLoginFormSubmit = async (value) => {
     const phone = value.get('mobile')
     const code = value.get('code')
     const password = value.get('password')
-    this.props.actions.userSignupAction(phone, code, password)
+    // this.props.actions.userSignupAction(phone, code, password)
+    const encodePassword = md5(md5(`toutiao_${password}`))
+    const {
+      type, url, token, user
+    } = await http.post('v1/authentication/phone', {
+      phone, code, ua: 'pc', password: encodePassword
+    })
+    if (type === 'redirect') {
+      window.localStorage.setItem('token', token)
+      window.location.replace(`/${url}?username=${user}`)
+    }
   }
 
   render() {

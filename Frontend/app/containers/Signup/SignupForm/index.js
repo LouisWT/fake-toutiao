@@ -158,7 +158,7 @@ class SignupForm extends React.PureComponent {
             type='text'
             placeholder='手机验证码'
             autocomplete='off'
-            validate={[msgValid]}
+            // validate={[msgValid]}
           />
           <span
             className={classnames(styles.codeBtn, isWaiting ? styles.active : '')}

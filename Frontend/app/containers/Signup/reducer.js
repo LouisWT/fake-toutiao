@@ -32,7 +32,13 @@ const reducer = handleAllActions({
     },
   },
   'APP/SIGNUP/FORM_SUBMIT': {
-    next(state) {
+    next(state, action) {
+      const {
+        type, url, token, user
+      } = _.get(action, 'payload')
+      state.set('submitRes', fromJS({
+        type, url, token, user
+      }))
       return state
     },
     throw(state) {
