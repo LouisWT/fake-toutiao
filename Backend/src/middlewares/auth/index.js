@@ -89,8 +89,12 @@ const generateToken = () => {
           //   ctx.redirect('/homepage');
           // }
           ctx.status = 200;
+          let redirectUrl = '/signup_profile';
+          if (type !== 0) {
+            redirectUrl = '/home';
+          }
           ctx.body = {
-            url: '/signup_profile',
+            url: redirectUrl,
             token,
             user: id,
             type,
