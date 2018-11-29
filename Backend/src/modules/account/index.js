@@ -49,7 +49,15 @@ const completeUserInfo = async (accountId, param, avatar) => {
   return [200, formatUser(user)];
 };
 
+const getUserInfo = async (accountId) => {
+  const filter = 'id=:accountId';
+  const filterParam = { accountId };
+  const user = await getUser(filter, filterParam);
+  return [200, formatUser(user)];
+};
+
 export {
   getDupName,
   completeUserInfo,
+  getUserInfo,
 };

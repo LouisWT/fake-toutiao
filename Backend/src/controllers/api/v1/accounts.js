@@ -2,6 +2,7 @@ import multer from 'koa-multer';
 import {
   getDupName,
   completeUserInfo,
+  getUserInfo,
 } from 'app/modules/account';
 
 const uploader = multer({ dest: 'temp/avatars/' });
@@ -20,6 +21,14 @@ export default (router) => {
     const param = ctx.req.body;
     const avatar = ctx.req.file;
     const [status, body] = await completeUserInfo(accountId, param, avatar);
+    ctx.status = status;
+    ctx.body = body;
+    await next();
+  });
+
+  router.get('/', async (ctx, next) => {
+    const accountId = ctx.state.user.id;
+    const [status, body] = await getUserInfo(accountId);
     ctx.status = status;
     ctx.body = body;
     await next();
