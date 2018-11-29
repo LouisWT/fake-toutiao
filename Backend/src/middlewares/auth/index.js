@@ -90,10 +90,10 @@ const generateToken = () => {
           // }
           ctx.status = 200;
           ctx.body = {
-            type: 'redirect',
             url: '/signup_profile',
             token,
             user: id,
+            type,
           };
           break;
         }

@@ -3,9 +3,10 @@ import { generateOssUrl } from 'app/modules/alioss';
 
 const formatUser = (user) => {
   if (_.isEmpty(user)) return {};
-  const { id, name, avatar, introduction, phone } = user;
+  const { id, type, name, avatar, introduction, phone } = user;
   return {
     accountId: id,
+    type,
     username: name,
     avatar: avatar ? generateOssUrl(avatar) : '',
     introduction,
