@@ -62,7 +62,8 @@ class Signup extends React.PureComponent {
     })
     if (type === 'redirect') {
       window.localStorage.setItem('token', token)
-      window.location.replace(`/${url}?username=${user}`)
+      const origin = window.location.origin
+      window.location.replace(`${origin}/${url}?username=${user}`)
     }
   }
 
