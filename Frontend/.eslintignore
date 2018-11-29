@@ -1,2 +1,3 @@
 app/containers/SignupProfile/*
 app/components/*
+app/router.js
