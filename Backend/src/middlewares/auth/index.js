@@ -73,23 +73,28 @@ const generateToken = () => {
       }
       switch (ua) {
         case 'pc': {
-          ctx.cookies.set('token', token, {
-            maxAge: 1000 * 60 * 60 * 24,
-            httpOnly: false,
-            signed: true,
-          });
-          ctx.cookies.set('username', id, {
-            maxAge: 1000 * 60 * 60 * 24,
-            httpOnly: false,
-            signed: true,
-          });
-          ctx.status = 302;
-          ctx.body = token;
-          if (type === 0) {
-            ctx.redirect('/signup_profile');
-          } else {
-            ctx.redirect('/homepage');
-          }
+          // ctx.cookies.set('token', token, {
+          //   maxAge: 1000 * 60 * 60 * 24,
+          //   httpOnly: false,
+          //   signed: true,
+          // });
+          // ctx.cookies.set('username', id, {
+          //   maxAge: 1000 * 60 * 60 * 24,
+          //   httpOnly: false,
+          //   signed: true,
+          // });
+          // if (type === 0) {
+          //   ctx.redirect('/signup_profile');
+          // } else {
+          //   ctx.redirect('/homepage');
+          // }
+          ctx.status = 200;
+          ctx.body = {
+            type: 'redirect',
+            url: '/signup_profile',
+            token,
+            user: id,
+          };
           break;
         }
         default:
