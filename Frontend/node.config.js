@@ -1,11 +1,11 @@
-var fse = require('fs-extra') // eslint-disable-line
-var glob = require('glob') // eslint-disable-line
-var path = require('path') // eslint-disable-line
-var hasha = require('hasha') // eslint-disable-line
-var shell = require('shelljs') // eslint-disable-line
-var ROOT_PATH = path.resolve(__dirname) // eslint-disable-line
-var packageJson = require('./package.json') // eslint-disable-line
-var BUILD_PATH = path.resolve(ROOT_PATH, 'build') // eslint-disable-line
+var fse = require('fs-extra') 
+var glob = require('glob') 
+var path = require('path') 
+var hasha = require('hasha') 
+var shell = require('shelljs') 
+var ROOT_PATH = path.resolve(__dirname) 
+var packageJson = require('./package.json') 
+var BUILD_PATH = path.resolve(ROOT_PATH, 'build') 
 
 function updateHTML(reg, filePath) {
   try {
@@ -22,6 +22,7 @@ function updateHTML(reg, filePath) {
     if (error1) {
       rej(error1)
     } else {
+      console.log(files)
       files.forEach((file) => {
         try {
           /* 读取文件并计算其 MD5 值 */
@@ -30,9 +31,7 @@ function updateHTML(reg, filePath) {
           const filePath = file.replace(/\.\/lib\//i, './build/').replace(/(\.\w+)$/i, `.${contentHash}$1`)
 
           /* 更新 HTML 文件中对应的文件引用方式 */
-          if (file.endsWith('/js/loading.js')) {
-            updateHTML(/{{ loading.js }}/i, filePath.slice(1)) // 使用 slice 的原因是去掉开头的 . 符号
-          } else if (file.endsWith('/images/logo.png')) {
+          if (file.endsWith('/images/logo.png')) {
             updateHTML(/{{ logo.png }}/i, filePath.slice(1)) // 使用 slice 的原因是去掉开头的 . 符号
           }
 

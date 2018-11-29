@@ -1,3 +1,4 @@
 app/containers/SignupProfile/*
 app/components/*
 app/router.js
+node.config.js

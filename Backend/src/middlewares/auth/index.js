@@ -83,13 +83,13 @@ const generateToken = () => {
             httpOnly: false,
             signed: true,
           });
+          ctx.status = 302;
+          ctx.body = token;
           if (type === 0) {
             ctx.redirect('/signup_profile');
           } else {
             ctx.redirect('/homepage');
           }
-          ctx.status = 302;
-          ctx.body = token;
           break;
         }
         default:
